@@ -1,13 +1,14 @@
 package com.example.springbootdg.controller;
 
+import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springbootdg.model.ValueMapping;
@@ -29,9 +30,13 @@ public class CommandController {
         return ResponseEntity.ok(null);
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<String> get(@RequestParam(value = "key") String key) {
-        String value = retrieveMap().get(key);
-        return ResponseEntity.ok(value);
+     @GetMapping(value = {"/get", "/get/{key}"})
+    public ResponseEntity<String> get(@PathVariable Optional<String> key) {
+        if (key.isPresent()) {
+            String value = retrieveMap().get(key.get());
+            return ResponseEntity.ok(value);
+        } else {
+            return ResponseEntity.ok(retrieveMap().values().toString());
+        }
     }
 }

@@ -1,2 +1,18 @@
 hazelcast:
   cluster-name: hazelcast-cluster
+  # persistence:
+  #   enabled: true
+  #   base-dir: /mnt/persistence
+  #   backup-dir: /mnt/hot-backup
+  #   validation-timeout-seconds: 120
+  #   data-load-timeout-seconds: 900
+  #   cluster-data-recovery-policy: FULL_RECOVERY_ONLY
+  #   rebalance-delay-seconds: 0
+  # map:
+  #   map:
+  #     merkle-tree:
+  #       enabled: true
+  #       depth: 12
+  #     data-persistence:
+  #       enabled: true
+  #       fsync: false
